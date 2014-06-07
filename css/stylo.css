@@ -1,0 +1,8 @@
+.no-display{
+	display: none!important;
+}
+.required label:after {
+	color: #e32;
+	content: '*';
+	display:inline;
+}
