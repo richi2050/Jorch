@@ -9,12 +9,13 @@ require "complementos.php";
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<script type="text/javascript" src='js/jquery-1.11.1.js'></script>
-	<link rel="stylesheet" href="css/stylo.css">
-	<script>
-	$(document).ready(function(){
-	 
+    <link rel="stylesheet" href="css/foundation/css/foundation.css" />
 	
 
+	<link rel="stylesheet" href="css/stylo.css">
+
+	<script>
+	$(document).ready(function(){
 		$('#Origencuenta').unbind().bind('change',function(){
 			var valor = $(this).val();
 			if(valor == 'N'){
@@ -96,6 +97,10 @@ require "complementos.php";
 		 		ocultar_3();
 		 	}else if(nacionalidad == 'N' && pais == 'M' && moneda == 'DL' && prove =='PF'){
 		 		ocultar_4();
+		 	}else if(nacionalidad == 'E'  && moneda == 'PA' && prove =='PM'){
+		 		ocultar_5();
+		 	}else if(nacionalidad == 'E'  && moneda == 'PA' && prove =='PF'){
+		 		ocultar_6();
 		 	}else if(prove == 'default'){
 		 		ocultar_all();
 		 	}
@@ -134,6 +139,9 @@ require "complementos.php";
 		$('#datoscolum').addClass('no-display');
 		$('#datoscolum_1').addClass('no-display');
 		$('#datoscolum_2').addClass('no-display');
+		$('#datoscolum_3').addClass('no-display');
+		$('#datoscolum_4').addClass('no-display');
+
 	}
 
 	function ocultar_1(){
@@ -142,6 +150,8 @@ require "complementos.php";
 		$('#datoscolum').removeClass('no-display');
 		$('#datoscolum_1').addClass('no-display');
 		$('#datoscolum_2').addClass('no-display');
+		$('#datoscolum_3').addClass('no-display');
+		$('#datoscolum_4').addClass('no-display');
 		
 
 	}
@@ -152,208 +162,192 @@ require "complementos.php";
 		$('#datoscolum').removeClass('no-display');
 		$('#datoscolum_1').addClass('no-display');
 		$('#datoscolum_2').addClass('no-display');
+		$('#datoscolum_3').addClass('no-display');
+		$('#datoscolum_4').addClass('no-display');
 	}
 
 
 	function ocultar_3(){
+		alert('entra a este 3');
 		$('#PersonaFisica').removeClass('no-display');
 		$('#datosBancarios').removeClass('no-display');
 		$('#datoscolum_1').removeClass('no-display');
 		$('#datoscolum_2').addClass('no-display');
+		$('#datoscolum_3').addClass('no-display');
+		$('#datoscolum_4').addClass('no-display');
 		$('#datoscolum').addClass('no-display');
-
-
 	}
 	function ocultar_4(){
+		alert('entra a este 4');
 		$('#PersonaFisica').removeClass('no-display');
 		$('#datosBancarios').removeClass('no-display');
 		$('#datoscolum_1').addClass('no-display');
 		$('#datoscolum_2').removeClass('no-display');
+		$('#datoscolum_3').addClass('no-display');
+		$('#datoscolum_4').addClass('no-display');
 		$('#datoscolum').addClass('no-display');
-
 	}
+	function  ocultar_5() {
+		$('#PersonaFisica').removeClass('no-display');
+		$('#datosBancarios').removeClass('no-display');
+		$('#datoscolum_1').addClass('no-display');
+		$('#datoscolum_2').addClass('no-display');
+		$('#datoscolum_3').removeClass('no-display');
+		$('#datoscolum_4').addClass('no-display');
+		$('#datoscolum').addClass('no-display');
+	}
+
+	function  ocultar_6() {
+		$('#PersonaFisica').removeClass('no-display');
+		$('#datosBancarios').removeClass('no-display');
+		$('#datoscolum_1').addClass('no-display');
+		$('#datoscolum_2').addClass('no-display');
+		$('#datoscolum_3').addClass('no-display');
+		$('#datoscolum_4').removeClass('no-display');
+		$('#datoscolum').addClass('no-display');
+	}
+
 
 
 	</script>
 </head>
 <body>
-	<table>
-		<tr>
-			<td>
-				Cual es el origen del banco de la cuenta?
-			</td>
-			<td>
-				<select name="Origencuenta" id="Origencuenta">
-					<option value=''>Selecciona naiconalidad</option>
-					<option value='N'> Nacional</option>
-					<option value='E'> Extranjera </option>
-				</select>
-			</td>	
-		</tr>
-		<tr>
-			<td>
-				Cuál es el país de origen de la cuenta?
-			</td>
-			<td>
-				<select id='Origenpais'>
-					<option value='default'>Selecionar pais de origen</option>
-				</select>
-			</td>	
-		</tr>
-		<tr>
-			<td>
-				Cuál es la moneda de la cuenta?
-			</td>
-			<td>
-				<select  id="Moneda">
-					<option value='default'>Seleccionar la moneda </option>
-				</select>
-			</td>	
-		</tr>	
-		<tr>
-			<td>
-				Cuál es la personalidad jurídica del proveedor?
-			</td>
-			<td>
-				<select id="proveedor">
-					<option value="default">Selecionar moral</option>
-				</select>
-			</td>
-		</tr>
-	</table>
+	<div class="panel callout radius">
+	<form action="">
+		<table align='center'>
+			<tr>
+				<td>
+					Cual es el origen del banco de la cuenta?
+				</td>
+				<td>
+					<select name="Origencuenta" id="Origencuenta">
+						<option value=''>Selecciona naiconalidad</option>
+						<option value='N'> Nacional</option>
+						<option value='E'> Extranjera </option>
+					</select>
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					Cuál es el país de origen de la cuenta?
+				</td>
+				<td>
+					<select id='Origenpais'>
+						<option value='default'>Selecionar pais de origen</option>
+					</select>
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					Cuál es la moneda de la cuenta?
+				</td>
+				<td>
+					<select  id="Moneda">
+						<option value='default'>Seleccionar la moneda </option>
+					</select>
+				</td>	
+			</tr>	
+			<tr>
+				<td>
+					Cuál es la personalidad jurídica del proveedor?
+				</td>
+				<td>
+					<select id="proveedor">
+						<option value="default">Selecionar moral</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+	</form>
 
-	<table id='PersonaMoral' class='no-display'>
+	<table id='PersonaFisica' class='no-display' align='center'>
+		 <thead>
+			<tr>
+				<th colspan='4' >
+					<center>			
+						Información proporcionada por el proveedor
+					</center>
+				</th>
+			</tr>
+		 </thead>
 		<tr>
 			<td colspan='2'>
-				Información proporcionada por el proveedor
-			</td>	
-		</tr>
-		<tr>
-			<td><strong>Razón Social o nombre completo del Proveedor: </strong></td>
-			<td> Empresa patito</td>
+				<strong>Razón Social o nombre completo del Proveedor: </strong>
+			</td>
+			<td colspan='2'> 
+				Empresa patito</td>
 		</tr>	
 		<tr>
-			<td>
+			<td colspan='2'>
 				<strong>Datos Fiscales – RFC:</strong>
 			</td>
-			<td>
+			<td colspan='2'>
 				RFC personal
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan='2'>
 				<strong>Correo - E-mail: </strong>
 			</td>
-			<td>
+			<td colspan='2'>
 				correoejemplo@gmail.com
 			</td>
 		</tr>
-		<tr>
-			<td>
-				<strong>Teléfonos del Proveedor: </strong>
-			</td>
-			<td>
-			 7224251261
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<strong>Personalidad Jurídica:</strong>
-			</td>
-			<td>
-				Personalidad juridica
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<strong>Observaciones</strong>
-			</td>
-			<td>
-				Este es el texto de observación.
-			</td>
-		</tr>
-
-	</table>
-
-	<table id='PersonaFisica' class='no-display'>
 		<tr>
 			<td colspan='2'>
-				Información proporcionada por el proveedor
-			</td>	
-		</tr>
-		<tr>
-			<td><strong>Razón Social o nombre completo del Proveedor: </strong></td>
-			<td> Empresa patito</td>
-		</tr>	
-		<tr>
-			<td>
-				<strong>Datos Fiscales – RFC:</strong>
-			</td>
-			<td>
-				RFC personal
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<strong>Correo - E-mail: </strong>
-			</td>
-			<td>
-				correoejemplo@gmail.com
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<strong>Teléfonos del Proveedor: </strong>
 			</td>
-			<td>
+			<td colspan='2'>
 			 7224251261
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan='2'>
 				<strong>Personalidad Jurídica:</strong>
 			</td>
-			<td>
+			<td colspan='2'>
 				Personalidad juridica
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan='2'>
 				<strong>Observaciones</strong>
 			</td>
-			<td>
+			<td colspan='2'>
 				Este es el texto de observación.
 			</td>
 		</tr>
-	</table>
-	<table class='no-display' id='datosBancarios'>
+
+	<div class='no-display' id='datosBancarios'>
+		<thead>
 		<tr>
-			<td colspan='2' >Datos Bancarios del Proveedor</td>
+			<th colspan='4' ><center>Datos Bancarios del Proveedor</center></th>
 		</tr>
+		</thead>
 		<tr>
 			<td>
 				<label>
-					NOMBRE DE PERSONA FÍSICA/MORAL
+					Nombre de persona física/moral
 				</label>
 			</td>
 			<td>
 				<input type='text' name='nombrefisica' id='nombrefisica'>
 			</td>
 			<td class='required'>
-				<label>ID FISCAL</label>
+				<label>id fiscal</label>
 			</td>	
 			<td>
 				<input type='text' name='idFiscal' name='idFiscal'>
 			</td>
 		</tr>
 		<tr>
-			<td><label>CORREO</label></td>
+			<td><label>correo</label></td>
 			<td>
 				<input type='text' name='correo' id='correo'>
 			</td>
 
 			<td>
-				<label>TELÉFONO</label></td>
+				<label>teléfono</label></td>
 			<td>
 				<input type='text' name='telefono' id='telefono'>
 			</td>
@@ -426,9 +420,9 @@ require "complementos.php";
 			<td colspan='4'>
 				<input type='text' name='nombreFiscal' id='nombreFiscal' size='90'>
 			</td>
-		</tr>	
-	</table>
-	<table id='datoscolum' class='no-display'>
+		</tr>
+		</div>	
+	<div id='datoscolum' class='no-display'>
 		<tr>
 			<td class='required'> 
 				<label>Convenio</label>
@@ -443,76 +437,349 @@ require "complementos.php";
 				<input type='text' name='referencia' id='referencia'>
 			</td>
 		</tr>
-	</table>
+	</div>
 
-	<table id='datoscolum_1' class='no-display'>
-		<tr>
-			<td colspan='2'>
-				nombre del apoderado
+	<table  align='center' id='datoscolum_1' class='no-display'>
+			<tr>
+				<td colspan='4'>
+					Nombre del apoderado
+				</td>
+			</tr>
+			<tr>
+				<td colspan='4'>
+					<input type='text' name='nombreApo' id='nombreApo' size='100'/>
+				</td>
+			</tr>
+			<tr>	
+			<td>
+				Aba banco beneficiario 
+			</td>
+			<td>
+				<input type='text' name='abaBene' id='abaBene' />
+			</td>
+			<td>Swift banco beneficiario</td>
+			<td>
+				<input type='text' name='swiBene' id='swiBene' />
 			</td>
 		</tr>
 		<tr>
-			<td colspan='2'>
+			<td class='required'>
+				<label>Convenio</label>
+			</td>
+			<td>
+				<input type='text' name='convenio' id='convenio' />
+			</td>
+			<td class='required'>
+				<label>Referencia</label>
+			</td>
+			<td>
+				<input type='text' name='referencia' id='referencia' />
+			</td>
+		</tr>
+	</table>
+	<table id='datoscolum_2' class='no-display' align='center'>
+		<tr>	
+			<td>
+				Aba banco beneficiario 
+			</td>
+			<td>
+				<input type='text' name='abaBene' id='abaBene' />
+			</td>
+			<td>Swift banco beneficiario</td>
+			<td>
+				<input type='text' name='swiBene' id='swiBene' />
+			</td>
+		</tr>
+		<tr>
+			<td class='required'>
+				<label>Convenio</label>
+			</td>
+			<td>
+				<input type='text' name='convenio' id='convenio' />
+			</td>
+			<td class='required'>
+				<label>Referencia</label>
+			</td>
+			<td>
+				<input type='text' name='referencia' id='referencia' />
+			</td>
+		</tr>
+	</table>
+
+
+
+
+	<table id='datoscolum_3' class='no-display' align='center'>
+		<thead>
+			<tr>
+				<th colspan='4'>
+				<center>
+					Banco corresponsal o intermediario
+				</center>
+				</th>
+			</tr>
+		</thead>
+		<tr>
+			<td colspan='4'>
+				Nombre del apoderado
+			</td>
+		</tr>
+		<tr>
+			<td colspan='4'>
 				<input type='text' name='nombreApo' id='nombreApo' size='100'>
 			</td>
 		</tr>
 		<tr>	
-			<td>
+			<td style='width:20%'>
 				Aba banco beneficiario
 			</td>
-			<td>
+			<td style='width:20%'>
 				<input type='text' name='abaBene' id='abaBene'>
 			</td>
-			<td>Swift banco beneficiario</td>
-			<td>
+			<td style='width:25%'>
+				Swift banco beneficiario
+			</td>
+			<td style='width:20%'>
 				<input type='text' name='swiBene' id='swiBene'>
 			</td>
 		</tr>
 		<tr>
-			<td class='required'>
-				<label>Convenio</label>
-			</td>
+			<td>Domicilio del proveedor</td>
 			<td>
-				<input type='text' name='convenio' id='convenio'>
+				<input type='text' name='docPro' id='docPro'>
 			</td>
-			<td class='required'>
-				<label>Referencia</label>
-			</td>
+			<td>Domicilio del banco beneficiario</td>
 			<td>
-				<input type='text' name='referencia' id='referencia'>
+				<input type='text' name='docBene' id='docBene'>
 			</td>
 		</tr>
-	</table>
-
-	<table id='datoscolum_2' class='no-display'>
+		<tr>
+			<td>Nombre del banco corresponsal</td>
+			<td>
+				<input type='text' name='banCore' id='banCore'>
+			</td>
+			<td>
+				Domicilio banco corresponsal
+			</td>
+			<td>
+				<input type='text' name='dombanCore' id='dombanCore'>
+			</td>
+		</tr>
 		<tr>	
 			<td>
-				Aba banco beneficiario
+				Aba banco corresponsal
 			</td>
 			<td>
 				<input type='text' name='abaBene' id='abaBene'>
 			</td>
-			<td>Swift banco beneficiario</td>
+			<td>Swift banco corresponsal</td>
 			<td>
 				<input type='text' name='swiBene' id='swiBene'>
 			</td>
 		</tr>
 		<tr>
-			<td class='required'>
-				<label>Convenio</label>
+			<td>Cuenta corta banco corresponsal</td>
+			<td>
+				<input type='text' name='cuentaBancoCor' id='cuentaBancoCor'>
 			</td>
 			<td>
-				<input type='text' name='convenio' id='convenio'>
-			</td>
-			<td class='required'>
-				<label>Referencia</label>
+			Cuenta larga banco corresponsal	
 			</td>
 			<td>
-				<input type='text' name='referencia' id='referencia'>
+				<input type='text' name='cuentaBancoLar' id='cuentaBancoLar'>
+			</td>
+		</tr>
+		<tr>
+			<td>Divisa cuenta banco corresponsal</td>
+			<td>
+				<input type='text' name='divBanCore' id='divBanCore'>
+			</td>
+			<td>
+				Tipo de cuenta banco corresponsal
+			</td>
+			<td>
+				<input type='text' name='TpoCtaBanCore' id='TpoCtaBanCore'>
+			</td>
+		</tr>
+		<tr>
+			<td>Nombre de titular detalles para pago FFC</td>
+			<td>
+				<input type='text' name='nomTiBanCoreFFC' id='nomTiBanCoreFFC'>
+			</td>
+			<td>Numero de cuenta detalles para pago FFC</td>
+			<td>
+				<input type='text' name='numCtaBanCoreFFC' id='numCtaBanCoreFFC'>
+			</td>
+		</tr>
+		<tr>
+			<td>Pago por auto FX-Divisa del pago</td>
+			<td>
+				<input type='text' name='pagfxDivisa' id='pagfxDivisa'>
+			</td>
+			<td>Pago por auto FX-concepto del pago</td>
+			<td>
+				<input type='text' name='pagfxConcepto' id='pagfxConcepto'>
+				
+			</td>
+		</tr>
+		<tr>
+			<td>Pago por auto FX-sucursal del pago</td>
+			<td>
+				<input type='text' name='pagfxSucursal' id='pagfxSucursal'>
+			</td>
+			<td>Documentacion Anexa</td>
+			<td>
+				<input type='text' name='docAnex' id='docAnex'>
+			</td>
+		</tr>
+		<tr>
+			<td>Mótivo de origina el alta</td>
+			<td>
+				<input type='text' name='motAlta' id='motAlta'>
+			</td>
+			<td>
+				¿El alta sustituye a la cuenta atual?
+			</td>
+			<td>
+				<select name="sustituyeAlta" id="sustituyeAlta">
+					<option value="SI">SI</option>
+					<option value="NO">NO</option>
+				</select>
 			</td>
 		</tr>
 	</table>
 
+
+	<table id='datoscolum_4' class='no-display'>
+		<thead>
+			<tr>
+				<th colspan='4'>
+				<center>
+					Banco corresponsal o intermediario
+				</center>
+				</th>
+			</tr>
+		</thead>
+		<tr>	
+			<td style='width:20%'>
+				Aba banco beneficiario
+			</td>
+			<td style='width:20%'>
+				<input type='text' name='abaBene' id='abaBene'>
+			</td>
+			<td style='width:25%'>
+				Swift banco beneficiario
+			</td>
+			<td style='width:20%'>
+				<input type='text' name='swiBene' id='swiBene'>
+			</td>
+		</tr>
+		<tr>
+			<td>Domicilio del proveedor</td>
+			<td>
+				<input type='text' name='docPro' id='docPro'>
+			</td>
+			<td>Domicilio del banco beneficiario</td>
+			<td>
+				<input type='text' name='docBene' id='docBene'>
+			</td>
+		</tr>
+		<tr>
+			<td>Nombre del banco corresponsal</td>
+			<td>
+				<input type='text' name='banCore' id='banCore'>
+			</td>
+			<td>
+				Domicilio banco corresponsal
+			</td>
+			<td>
+				<input type='text' name='dombanCore' id='dombanCore'>
+			</td>
+		</tr>
+		<tr>	
+			<td>
+				Aba banco corresponsal
+			</td>
+			<td>
+				<input type='text' name='abaBene' id='abaBene'>
+			</td>
+			<td>Swift banco corresponsal</td>
+			<td>
+				<input type='text' name='swiBene' id='swiBene'>
+			</td>
+		</tr>
+		<tr>
+			<td>Cuenta corta banco corresponsal</td>
+			<td>
+				<input type='text' name='cuentaBancoCor' id='cuentaBancoCor'>
+			</td>
+			<td>
+			Cuenta larga banco corresponsal	
+			</td>
+			<td>
+				<input type='text' name='cuentaBancoLar' id='cuentaBancoLar'>
+			</td>
+		</tr>
+		<tr>
+			<td>Divisa cuenta banco corresponsal</td>
+			<td>
+				<input type='text' name='divBanCore' id='divBanCore'>
+			</td>
+			<td>
+				Tipo de cuenta banco corresponsal
+			</td>
+			<td>
+				<input type='text' name='TpoCtaBanCore' id='TpoCtaBanCore'>
+			</td>
+		</tr>
+		<tr>
+			<td>Nombre de titular detalles para pago FFC</td>
+			<td>
+				<input type='text' name='nomTiBanCoreFFC' id='nomTiBanCoreFFC'>
+			</td>
+			<td>Numero de cuenta detalles para pago FFC</td>
+			<td>
+				<input type='text' name='numCtaBanCoreFFC' id='numCtaBanCoreFFC'>
+			</td>
+		</tr>
+		<tr>
+			<td>Pago por auto FX-Divisa del pago</td>
+			<td>
+				<input type='text' name='pagfxDivisa' id='pagfxDivisa'>
+			</td>
+			<td>Pago por auto FX-concepto del pago</td>
+			<td>
+				<input type='text' name='pagfxConcepto' id='pagfxConcepto'>
+				
+			</td>
+		</tr>
+		<tr>
+			<td>Pago por auto FX-sucursal del pago</td>
+			<td>
+				<input type='text' name='pagfxSucursal' id='pagfxSucursal'>
+			</td>
+			<td>Documentacion Anexa</td>
+			<td>
+				<input type='text' name='docAnex' id='docAnex'>
+			</td>
+		</tr>
+		<tr>
+			<td>Mótivo de origina el alta</td>
+			<td>
+				<input type='text' name='motAlta' id='motAlta'>
+			</td>
+			<td>
+				¿El alta sustituye a la cuenta atual?
+			</td>
+			<td>
+				<select name="sustituyeAlta" id="sustituyeAlta">
+					<option value="SI">SI</option>
+					<option value="NO">NO</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+</div>
 
 </body>
 </html>
