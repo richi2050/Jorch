@@ -1,8 +1,4 @@
-<?php 
-require "complementos.php";
 
-//print_r($datos);
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -358,9 +354,23 @@ require "complementos.php";
 			</td>
 			<td>
 				<select id='bancos'>
-				<?php foreach ($datos as $key => $value) {?>
-					<option value='<?php echo $key; ?>'><?php echo $value; ?> </option>
-				<?php }?>
+					<option value="0">Selecciona banco</option>
+					<option value="1" id="">Banamex</option>
+					<option value="2" id="">BBVA bancomer</option>
+					<option value="3" id="">Santander</option>
+					<option value="4" id="">Banjercito</option>
+					<option value="5" id="">HSBC</option>
+					<option value="6" id="">Bajio</option>
+					<option value="7" id="">IXE</option>
+					<option value="8" id="">Inbursa</option>
+					<option value="9" id="">Internacionales</option>
+					<option value="10" id="">Mifel</option>
+					<option value="11" id="">Scotiabank</option>
+					<option value="12" id="">Banregio</option>
+					<option value="13" id="">Invex</option>
+					<option value="14" id="">Bansi</option>
+					<option value="15" id="">Afirme</option>
+					<option value="16" id="">Banorte</option>
 				</select>
 			</td>
 			<td>
@@ -403,10 +413,10 @@ require "complementos.php";
 			</td>
 			<td>
 				<select name="tipoCuenta" id="tipoCuenta">
-				<?php foreach ($datosT as $dato => $value) {?>
-				<option value='<?php echo $dato; ?>'><?php echo $value;?></option>
-
-				<?php } ?>
+					<option value='0'>Selecciona id fiscal</option>
+					<option value='1'>Nacional</option>
+					<option value='2'>RFC</option>
+					<option value='3'>Otro</option>
 				</select>
 			</td>
 		</tr>
