@@ -12,6 +12,19 @@
 
 	<script>
 	$(document).ready(function(){
+		$('#correo').blur(function(){
+			var _this = $('#correo');
+			var _email = $('#correo').val();
+	
+			var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+			var valid = re.test(_email);
+	
+			if(valid){
+				_this.attr('style', 'background:white');
+			} else {
+				_this.attr('style', 'background:#FF4A4A');
+			}
+		});
 		$('#Origencuenta').unbind().bind('change',function(){
 			var valor = $(this).val();
 			if(valor == 'N'){
@@ -100,34 +113,95 @@
 		 	}else if(prove == 'default'){
 		 		ocultar_all();
 		 	}
-
-
-
-
-
-
-
-
-
-		/* if(prove == 'PM'){
-		 	$('#PersonaMoral').removeClass('no-display');
-		 	$('#PersonaFisica').addClass('no-display');
-		 	$('#datosBancarios').removeClass('no-display');
-		 	$('#datoscolum').removeClass('no-display');
-
-
-
-
-		 }else if(prove == 'PF'){
-		 	$('#PersonaFisica').removeClass('no-display');
-		 	$('#PersonaMoral').addClass('no-display');
-		 	$('#datosBancarios').removeClass('no-display');
-
-		 }*/
-		// alert(prove);
 		});
- //setOptionsToSelect($("#bancos"), 'Seleccionar banco', <?php echo json_encode($datos); ?>);
+
+		$('#Moneda').unbind().bind('change',function(){
+
+		 var prove = $('#proveedor').val(),ç
+		 	nacionalidad= $('#Origencuenta').val(),
+		 	pais = $('#Origenpais').val(),
+		 	moneda = $('#Moneda').val();
+		 	if(prove != ''){
+		 		if(nacionalidad == 'N' && pais == 'M' && moneda == 'PN' && prove =='PF'){
+			 		ocultar_1();
+			 	}else if(nacionalidad == 'N' && pais == 'M' && moneda == 'PN' && prove =='PM'){
+			 		ocultar_2();
+			 	}else if(nacionalidad == 'N' && pais == 'M' && moneda == 'DL' && prove =='PM'){
+			 		ocultar_3();
+			 	}else if(nacionalidad == 'N' && pais == 'M' && moneda == 'DL' && prove =='PF'){
+			 		ocultar_4();
+			 	}else if(nacionalidad == 'E'  && moneda == 'PA' && prove =='PM'){
+			 		ocultar_5();
+			 	}else if(nacionalidad == 'E'  && moneda == 'PA' && prove =='PF'){
+			 		ocultar_6();
+			 	}else if(prove == 'default'){
+			 		ocultar_all();
+			 	}
+		 	}
+		 	else{
+
+		 	}
+
+		 	
+		});
+
 	});
+
+	function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz ";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+
+    function fiscal(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = "1234567890-";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+    function numerico(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = "1234567890";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
 	
 	function ocultar_all(){
 		$('#PersonaFisica').addClass('no-display');
@@ -137,9 +211,7 @@
 		$('#datoscolum_2').addClass('no-display');
 		$('#datoscolum_3').addClass('no-display');
 		$('#datoscolum_4').addClass('no-display');
-
 	}
-
 	function ocultar_1(){
 		$('#PersonaFisica').removeClass('no-display');
 		$('#datosBancarios').removeClass('no-display');
@@ -148,10 +220,7 @@
 		$('#datoscolum_2').addClass('no-display');
 		$('#datoscolum_3').addClass('no-display');
 		$('#datoscolum_4').addClass('no-display');
-		
-
 	}
-
 	function ocultar_2(){
 		$('#PersonaFisica').removeClass('no-display');
 		$('#datosBancarios').removeClass('no-display');
@@ -161,8 +230,6 @@
 		$('#datoscolum_3').addClass('no-display');
 		$('#datoscolum_4').addClass('no-display');
 	}
-
-
 	function ocultar_3(){
 		$('#PersonaFisica').removeClass('no-display');
 		$('#datosBancarios').removeClass('no-display');
@@ -190,7 +257,6 @@
 		$('#datoscolum_4').addClass('no-display');
 		$('#datoscolum').addClass('no-display');
 	}
-
 	function  ocultar_6() {
 		$('#PersonaFisica').removeClass('no-display');
 		$('#datosBancarios').removeClass('no-display');
@@ -200,9 +266,6 @@
 		$('#datoscolum_4').removeClass('no-display');
 		$('#datoscolum').addClass('no-display');
 	}
-
-
-
 	</script>
 </head>
 <body>
@@ -224,7 +287,7 @@
 				</td>
 				<td>
 					<select name="Origencuenta" id="Origencuenta">
-						<option value=''>Selecciona naiconalidad</option>
+						<option value=''>Selecciona nacionalidad</option>
 						<option value='N'> Nacional</option>
 						<option value='E'> Extranjera </option>
 					</select>
@@ -334,13 +397,13 @@
 				</label>
 			</td>
 			<td>
-				<input type='text' name='nombrefisica' id='nombrefisica'>
+				<input type='text' name='nombrefisica' id='nombrefisica' onkeypress="return soloLetras(event)">
 			</td>
 			<td class='required'>
 				<label>id fiscal</label>
 			</td>	
 			<td>
-				<input type='text' name='idFiscal' name='idFiscal'>
+				<input type='text' name='idFiscal' name='idFiscal' onkeypress="return fiscal(event)">
 			</td>
 		</tr>
 		<tr>
@@ -384,7 +447,7 @@
 				<label> Sucursal</label>
 			</td>
 			<td>
-				<input type='text' name='sucursal' id='sucursal'>
+				<input type='text' name='sucursal' id='sucursal' onkeypress="return soloLetras(event)">
 			</td>
 		</tr>
 		<tr>
@@ -394,13 +457,13 @@
 				</label>
 			</td>
 			<td>
-				<input type='text' name='cuentaCorta' id='cuentaCorta'>	
+				<input type='text' name='cuentaCorta' id='cuentaCorta' onkeypress="return numerico(event)">	
 			</td>
 			<td class='required'>
 				<label>Cuenta larga</label>
 			</td>
 			<td>
-				<input type='text' name='cuentaLarga' id='cuentaLarga'>		
+				<input type='text' name='cuentaLarga' id='cuentaLarga' onkeypress="return numerico(event)">		
 			</td>
 		</tr>
 		<tr>
@@ -410,7 +473,7 @@
 				</label>
 			</td>
 			<td>
-				<input type='text' name='idFiscal' id='idFiscal'>	
+				<input type='text' name='idFiscal' id='idFiscal' onkeypress="return fiscal(event)">	
 			</td>
 
 			<td class='required'>
