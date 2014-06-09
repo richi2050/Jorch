@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -641,7 +640,7 @@ if(d.valant != d.value){
 		</div>	
 
 		<div id='datoscolum' class='no-display'>
-<span class="label label-2 ">Datos especiales este</span>
+<span class="label label-2 ">Datos especiales </span>
 	
 	<table align='center' width="70%">
 		<tr>
@@ -651,17 +650,23 @@ if(d.valant != d.value){
 			<td>
 				<input type='text' name='convenio' id='convenio'>
 			</td>
+		</tr>
+		<tr>	
 			<td class='required'> 
 				<label>Referencia</label>
 			</td>
 			<td>
-			<input type="hidden" name="remLen" size="3" maxlength="3" value="30" readonly>
-				
-
 				<textarea name="cuentacorta" cols="20" rows="1" maxlength="20" autofocus 
         wrap=physical onKeyDown= "contador(this.form.cuentacorta,this.form.remLen,20);" 
-        onkeyup="mascara(this,'-',patron2,true)";"></textarea>   
-
+        ></textarea>   
+			</td>
+		</tr>
+		<tr>	
+			<td >
+				<label>Dispones de los siguientes Caracteres disponibles</label>
+			</td>
+			<td>
+				<input type="text" style='width:50px;' name="remLen" size="3" maxlength="3" value="30" readonly><label>
 			</td>
 		</tr>
 	
@@ -704,13 +709,21 @@ if(d.valant != d.value){
 				<label>Referencia</label>
 			</td>
 			<td>
-			<input type="hidden" name="remLen2" size="3" maxlength="3" value="30" readonly>
-				
-
+			
+	
 				<textarea name="cuentacorta2" cols="20" rows="1" maxlength="20" autofocus 
         wrap=physical onKeyDown= "contador(this.form.cuentacorta2,this.form.remLen2,20);" 
-        onkeyup="mascara(this,'-',patron2,true)";"></textarea>   
+        ></textarea>   
 			</td>
+		</tr>
+		<td colspan='2'>
+				<label>Dispones de los siguientes Caracteres disponibles</label>
+
+		</td>
+		<td colspan='2'>
+		<input type="text" style='width:50px;' name="remLen2" size="3" maxlength="3" value="30" readonly>
+		</td>
+		<tr>
 		</tr>
 	</table>
 	</div>
@@ -742,8 +755,19 @@ if(d.valant != d.value){
 				<label>Referencia</label>
 			</td>
 			<td>
-				<input type='text' name='referencia' id='referencia' onkeypress="return todo(event)" onkeyup="mascara(this,'-',patron2,true)"/>
+				<textarea name="cuentacorta3" cols="20" rows="1" maxlength="20" autofocus 
+        wrap=physical onKeyDown= "contador(this.form.cuentacorta3,this.form.remLen3,20);" 
+        ></textarea>
 			</td>
+		</tr>
+		<tr>
+		<td colspan='2'>
+		<label>Dispones de los siguientes Caracteres disponibles</label>
+		</td>
+		<td colspan='2'>
+		<input type="text" style='width:50px;' name="remLen3" size="3" maxlength="3" value="30" readonly>
+		  
+		</td>
 		</tr>
 	</table>
 	</div>
