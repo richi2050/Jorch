@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -181,10 +182,16 @@
 var patron = new Array(2,2,2,2,2,2,2,2,2)
 var patron2 = new Array(2,2,2,2,2,2,2,2,2)
 	
-	function contador (campo, cuentacampo, limite) { 
+
+function contador (campo, cuentacampo, limite) {
+ console.log(campo);
+        console.log(cuentacampo);
+        console.log(limite); 
 if (campo.value.length > limite) campo.value = campo.value.substring(0, limite); 
 else cuentacampo.value = limite - campo.value.length; 
 } 
+
+
 
 	function mascara(d,sep,pat,nums){
 if(d.valant != d.value){
@@ -434,7 +441,7 @@ if(d.valant != d.value){
 			</tr>
 		</table>
 	</form>
-
+<form>
 	<div id='PersonaFisica' class='no-display'>
 <span class="label label-2 ">Información proporcionada por el proveedor</span>
 
@@ -634,7 +641,7 @@ if(d.valant != d.value){
 		</div>	
 
 		<div id='datoscolum' class='no-display'>
-<span class="label label-2 ">Datos especiales</span>
+<span class="label label-2 ">Datos especiales este</span>
 	
 	<table align='center' width="70%">
 		<tr>
@@ -648,7 +655,13 @@ if(d.valant != d.value){
 				<label>Referencia</label>
 			</td>
 			<td>
-				<input type='text' name='referencia' id='referencia' onkeyup="mascara(this,'-',patron2,true)" onKeyDown= "contador(this.form.mensaje,this.form.remLen,26);">
+			<input type="hidden" name="remLen" size="3" maxlength="3" value="30" readonly>
+				
+
+				<textarea name="cuentacorta" cols="20" rows="1" maxlength="20" autofocus 
+        wrap=physical onKeyDown= "contador(this.form.cuentacorta,this.form.remLen,20);" 
+        onkeyup="mascara(this,'-',patron2,true)";"></textarea>   
+
 			</td>
 		</tr>
 	
@@ -691,7 +704,12 @@ if(d.valant != d.value){
 				<label>Referencia</label>
 			</td>
 			<td>
-				<input type='text' name='referencia' id='referencia' onkeypress="return todo(event)" onkeyup="mascara(this,'-',patron2,true)" onKeyDown= "contador(this.form.mensaje,this.form.remLen,26);"/>
+			<input type="hidden" name="remLen2" size="3" maxlength="3" value="30" readonly>
+				
+
+				<textarea name="cuentacorta2" cols="20" rows="1" maxlength="20" autofocus 
+        wrap=physical onKeyDown= "contador(this.form.cuentacorta2,this.form.remLen2,20);" 
+        onkeyup="mascara(this,'-',patron2,true)";"></textarea>   
 			</td>
 		</tr>
 	</table>
@@ -1090,6 +1108,7 @@ if(d.valant != d.value){
 </div>
 
 </div>
+</form>
 
 </body>
 </html>
