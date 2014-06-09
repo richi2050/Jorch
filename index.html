@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -153,6 +154,47 @@
 		});
 
 	});
+
+var patron = new Array(2,2,2,2,2,2,2,2,2)
+var patron2 = new Array(2,2,2,2,2,2,2,2,2)
+	
+	function mascara(d,sep,pat,nums){
+if(d.valant != d.value){
+	val = d.value
+	largo = val.length
+	val = val.split(sep)
+	val2 = ''
+	for(r=0;r<val.length;r++){
+		val2 += val[r]	
+	}
+	if(nums){
+		for(z=0;z<val2.length;z++){
+			if(isNaN(val2.charAt(z))){
+				letra = new RegExp(val2.charAt(z),"g")
+				val2 = val2.replace(letra,"")
+			}
+		}
+	}
+	val = ''
+	val3 = new Array()
+	for(s=0; s<pat.length; s++){
+		val3[s] = val2.substring(0,pat[s])
+		val2 = val2.substr(pat[s])
+	}
+	for(q=0;q<val3.length; q++){
+		if(q ==0){
+			val = val3[q]
+		}
+		else{
+			if(val3[q] != ""){
+				val += sep + val3[q]
+				}
+		}
+	}
+	d.value = val
+	d.valant = val
+	}
+}
 
 
 	function domicilio(e){
@@ -318,16 +360,8 @@
 <body>
 	<div class="panel callout radius">
 	<form action="">
-		<table align='center'>
-			<thead>
-				<tr>
-					<th colspan='2'>
-						<center>
-							Clasificación bancaria del proveedor
-						</center>	
-					</th>
-				</tr>
-			</thead>
+	<span class="label label-2 ">Clasificación bancaria del proveedor</span>
+		<table align='center' width="70%">
 			<tr>
 				<td>
 					Cual es el origen del banco de la cuenta?
@@ -373,19 +407,15 @@
 		</table>
 	</form>
 
-	<table id='PersonaFisica' class='no-display' align='center'>
-		 <thead>
-			<tr>
-				<th colspan='4' >
-					<center>			
-						Información proporcionada por el proveedor
-					</center>
-				</th>
-			</tr>
-		 </thead>
+	<div id='PersonaFisica' class='no-display'>
+<span class="label label-2 ">Información proporcionada por el proveedor</span>
+
+	<table  align='center' width="70%">
 		<tr>
 			<td colspan='2'>
-				<strong>Razón Social o nombre completo del Proveedor: </strong>
+				<strong>
+					Razón Social o nombre completo del Proveedor:
+				</strong>
 			</td>
 			<td colspan='2'> 
 				Empresa patito</td>
@@ -431,12 +461,17 @@
 			</td>
 		</tr>
 
+
+
+
+</table>
+	</div >
+
+
 	<div class='no-display' id='datosBancarios'>
-		<thead>
-		<tr>
-			<th colspan='4' ><center>Datos Bancarios del Proveedor</center></th>
-		</tr>
-		</thead>
+<span class="label label-2 ">Datos Bancarios del Proveedor</span>
+	<table align='center' width="70%">
+	
 		<tr>
 			<td>
 				<label>
@@ -498,6 +533,23 @@
 				<input type='text' name='sucursal' id='sucursal' onkeypress="return soloLetras(event)">
 			</td>
 		</tr>
+		
+		<tr>
+			<td>
+				<label > 
+					Cuenta corta
+				</label>
+			</td>
+			<td>
+				<input type='text' name='cuentaCorta' id='cuentaCorta' onkeypress="return numerico(event)" onkeyup="mascara(this,'-',patron2,true)">	
+			</td>
+			<td class='required'>
+				<label>Cuenta larga</label>
+			</td>
+			<td>
+				<input type='text' name='cuentaLarga' id='cuentaLarga' onkeypress="return numerico(event)" onkeyup="mascara(this,'-',patron2,true)">		
+			</td>
+		</tr>
 		<tr id='ciediv' class="no-display">
 			<td>
 			CIE
@@ -507,29 +559,17 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				<label > 
-					Cuenta corta
-				</label>
-			</td>
-			<td>
-				<input type='text' name='cuentaCorta' id='cuentaCorta' onkeypress="return numerico(event)">	
-			</td>
-			<td class='required'>
-				<label>Cuenta larga</label>
-			</td>
-			<td>
-				<input type='text' name='cuentaLarga' id='cuentaLarga' onkeypress="return numerico(event)">		
-			</td>
-		</tr>
-		<tr>
 			<td class='required'>
 				<label>
 					Tipo id fiscal
 				</label>
 			</td>
 			<td>
-				<input type='text' name='idFiscal' id='idFiscal' onkeypress="return fiscal(event)">	
+				<select name='idFiscal' id='idFiscal'>
+					<option value='0'>Selecciona id fiscal</option>
+					<option value='1'>CUIL</option>
+					<option value='2'>CUIT</option>
+				</select>
 			</td>
 
 			<td class='required'>
@@ -539,7 +579,7 @@
 			</td>
 			<td>
 				<select name="tipoCuenta" id="tipoCuenta">
-					<option value='0'>Selecciona id fiscal</option>
+					<option value='0'>Selecciona tipo de cuenta</option>
 					<option value='1'>Nacional</option>
 					<option value='2'>RFC</option>
 					<option value='3'>Otro</option>
@@ -549,7 +589,7 @@
 
 		<tr>
 			<td colspan='4'>
-				Nombre de persona Física/Moral tal cuál comoaparece en el estado de cuenta 
+				Nombre de persona Física/Moral tal cuál como aparece en el estado de cuenta 
 			</td>
 		</tr>
 		<tr>
@@ -557,8 +597,13 @@
 				<input type='text' name='nombreFiscal' id='nombreFiscal' size='90' onkeypress="return soloLetras(event)">
 			</td>
 		</tr>
+		</table>
 		</div>	
-	<div id='datoscolum' class='no-display'>
+
+		<div id='datoscolum' class='no-display'>
+<span class="label label-2 ">Datos especiales</span>
+	
+	<table align='center' width="70%">
 		<tr>
 			<td class='required'> 
 				<label>Convenio</label>
@@ -570,12 +615,16 @@
 				<label>Referencia</label>
 			</td>
 			<td>
-				<input type='text' name='referencia' id='referencia'>
+				<input type='text' name='referencia' id='referencia' onkeyup="mascara(this,'-',patron2,true)">
 			</td>
 		</tr>
+	
+	</table>
 	</div>
 
-	<table  align='center' id='datoscolum_1' class='no-display'>
+<div id='datoscolum_1' class='no-display'>
+<span class="label label-2 ">Datos especiales</span>
+	<table  align='center' width='70%' > <!--datos especiales -->
 			<tr>
 				<td colspan='4'>
 					Nombre del apoderado
@@ -609,11 +658,16 @@
 				<label>Referencia</label>
 			</td>
 			<td>
-				<input type='text' name='referencia' id='referencia' onkeypress="return todo(event)" />
+				<input type='text' name='referencia' id='referencia' onkeypress="return todo(event)" onkeyup="mascara(this,'-',patron2,true)"/>
 			</td>
 		</tr>
 	</table>
-	<table id='datoscolum_2' class='no-display' align='center'>
+	</div>
+
+	<div id='datoscolum_2' class='no-display'>
+<span class="label label-2 ">Datos requeridos para personalidad</span>
+
+	<table  align='center' width="70%">
 		<tr>	
 			<td>
 				Aba banco beneficiario 
@@ -637,45 +691,39 @@
 				<label>Referencia</label>
 			</td>
 			<td>
-				<input type='text' name='referencia' id='referencia' onkeypress="return todo(event)" />
+				<input type='text' name='referencia' id='referencia' onkeypress="return todo(event)" onkeyup="mascara(this,'-',patron2,true)"/>
 			</td>
 		</tr>
 	</table>
+	</div>
 
 
-
-
-	<table id='datoscolum_3' class='no-display' align='center'>
-		<thead>
-			<tr>
-				<th colspan='4'>
-				<center>
-					Banco corresponsal o intermediario
-				</center>
-				</th>
-			</tr>
-		</thead>
+<div id='datoscolum_3' class='no-display'>
+<span class="label label-2 ">Banco corresponsal o intermediario</span>
+	<table  align='center' width="70%">
 		<tr>
-			<td colspan='4'>
+			<td colspan='2'>
 				Nombre del apoderado
 			</td>
 		</tr>
 		<tr>
-			<td colspan='4'>
-				<input type='text' name='nombreApo' id='nombreApo' size='100' onkeypress="return soloLetras(event)">
+			<td colspan='2'>
+				<input type='text' name='nombreApo' id='nombreApo'  onkeypress="return soloLetras(event)">
 			</td>
 		</tr>
 		<tr>	
-			<td style='width:20%'>
+			<td style='width:10%'>
 				Aba banco beneficiario
 			</td>
-			<td style='width:20%'>
+			<td style='width:10%'>
 				<input type='text' name='abaBene' id='abaBene' onkeypress="return numerico(event)" >
 			</td>
-			<td style='width:25%'>
+		</tr>
+		<tr>	
+			<td >
 				Swift banco beneficiario
 			</td>
-			<td style='width:20%'>
+			<td >
 				<input type='text' name='swiBene' id='swiBene'  onkeypress="return numerico(event)" >
 			</td>
 		</tr>
@@ -684,6 +732,8 @@
 			<td>
 				<input type='text' name='docPro' id='docPro' onkeypress="return domicilio(event)">
 			</td>
+		</tr>
+		<tr>
 			<td>Domicilio del banco beneficiario</td>
 			<td>
 				<input type='text' name='docBene' id='docBene' onkeypress="return domicilio(event)">
@@ -694,6 +744,8 @@
 			<td>
 				<input type='text' name='banCore' id='banCore' onkeypress="return domicilio(event)">
 			</td>
+		</tr>
+		<tr>	
 			<td>
 				Domicilio banco corresponsal
 			</td>
@@ -708,6 +760,8 @@
 			<td>
 				<input type='text' name='abaBene' id='abaBene'  onkeypress="return numerico(event)">
 			</td>
+		</tr>
+		<tr>
 			<td>Swift banco corresponsal</td>
 			<td>
 				<input type='text' name='swiBene' id='swiBene' onkeypress="return numerico(event)">
@@ -716,13 +770,15 @@
 		<tr>
 			<td>Cuenta corta banco corresponsal</td>
 			<td>
-				<input type='text' name='cuentaBancoCor' id='cuentaBancoCor' onkeypress="return numerico(event)">
+				<input type='text' name='cuentaBancoCor' id='cuentaBancoCor' onkeypress="return numerico(event)" onkeyup="mascara(this,'-',patron2,true)">
 			</td>
+		</tr>
+		<tr>	
 			<td>
 			Cuenta larga banco corresponsal	
 			</td>
 			<td>
-				<input type='text' name='cuentaBancoLar' id='cuentaBancoLar' onkeypress="return numerico(event)">
+				<input type='text' name='cuentaBancoLar' id='cuentaBancoLar' onkeypress="return numerico(event)" onkeyup="mascara(this,'-',patron2,true)">
 			</td>
 		</tr>
 		<tr>
@@ -730,6 +786,8 @@
 			<td>
 				<input type='text' name='divBanCore' id='divBanCore'>
 			</td>
+		</tr>
+		<tr>
 			<td>
 				Tipo de cuenta banco corresponsal
 			</td>
@@ -746,6 +804,8 @@
 			<td>
 				<input type='text' name='nomTiBanCoreFFC' id='nomTiBanCoreFFC' onkeypress="return soloLetras(event)">
 			</td>
+		</tr>
+		<tr>	
 			<td>Numero de cuenta detalles para pago FFC</td>
 			<td>
 				<input type='text' name='numCtaBanCoreFFC' id='numCtaBanCoreFFC' onkeypress="return numerico(event)">
@@ -756,6 +816,8 @@
 			<td>
 				<input type='text' name='pagfxDivisa' id='pagfxDivisa' onkeypress="return numerico(event)">
 			</td>
+		</tr>
+		<tr>	
 			<td>Pago por auto FX-concepto del pago</td>
 			<td>
 				<input type='text' name='pagfxConcepto' id='pagfxConcepto' onkeypress="return numerico(event)">
@@ -767,6 +829,8 @@
 			<td>
 				<input type='text' name='pagfxSucursal' id='pagfxSucursal'>
 			</td>
+		</tr>
+		<tr>	
 			<td>Documentacion Anexa</td>
 			<td>
 				<input type='text' name='docAnex' id='docAnex'>
@@ -777,6 +841,8 @@
 			<td>
 				<input type='text' name='motAlta' id='motAlta'>
 			</td>
+		</tr>
+		<tr>	
 			<td>
 				¿El alta sustituye a la cuenta atual?
 			</td>
@@ -788,18 +854,12 @@
 			</td>
 		</tr>
 	</table>
+	</div>
 
+<div id='datoscolum_4' class='no-display'>
+<span class="label label-2 ">Banco corresponsal o intermediario</span>
+	<table  align='center' width="70%">
 
-	<table id='datoscolum_4' class='no-display'>
-		<thead>
-			<tr>
-				<th colspan='4'>
-				<center>
-					Banco corresponsal o intermediario
-				</center>
-				</th>
-			</tr>
-		</thead>
 		<tr>	
 			<td style='width:20%'>
 				Aba banco beneficiario
@@ -807,6 +867,8 @@
 			<td style='width:20%'>
 				<input type='text' name='abaBene' id='abaBene'>
 			</td>
+		</tr>
+		<tr>	
 			<td style='width:25%'>
 				Swift banco beneficiario
 			</td>
@@ -819,6 +881,8 @@
 			<td>
 				<input type='text' name='docPro' id='docPro'>
 			</td>
+		</tr>
+		<tr>
 			<td>Domicilio del banco beneficiario</td>
 			<td>
 				<input type='text' name='docBene' id='docBene'>
@@ -829,6 +893,8 @@
 			<td>
 				<input type='text' name='banCore' id='banCore'>
 			</td>
+		</tr>
+		<tr>	
 			<td>
 				Domicilio banco corresponsal
 			</td>
@@ -843,6 +909,8 @@
 			<td>
 				<input type='text' name='abaBene' id='abaBene'>
 			</td>
+		</tr>
+		<tr>	
 			<td>Swift banco corresponsal</td>
 			<td>
 				<input type='text' name='swiBene' id='swiBene'>
@@ -851,13 +919,15 @@
 		<tr>
 			<td>Cuenta corta banco corresponsal</td>
 			<td>
-				<input type='text' name='cuentaBancoCor' id='cuentaBancoCor'>
+				<input type='text' name='cuentaBancoCor' id='cuentaBancoCor' onkeyup="mascara(this,'-',patron2,true)">
 			</td>
+		</tr>
+		<tr>	
 			<td>
 			Cuenta larga banco corresponsal	
 			</td>
 			<td>
-				<input type='text' name='cuentaBancoLar' id='cuentaBancoLar'>
+				<input type='text' name='cuentaBancoLar' id='cuentaBancoLar' onkeyup="mascara(this,'-',patron2,true)">
 			</td>
 		</tr>
 		<tr>
@@ -865,6 +935,8 @@
 			<td>
 				<input type='text' name='divBanCore' id='divBanCore'>
 			</td>
+		</tr>
+		<tr>	
 			<td>
 				Tipo de cuenta banco corresponsal
 			</td>
@@ -877,6 +949,8 @@
 			<td>
 				<input type='text' name='nomTiBanCoreFFC' id='nomTiBanCoreFFC'>
 			</td>
+		</tr>
+		<tr>	
 			<td>Numero de cuenta detalles para pago FFC</td>
 			<td>
 				<input type='text' name='numCtaBanCoreFFC' id='numCtaBanCoreFFC'>
@@ -887,6 +961,8 @@
 			<td>
 				<input type='text' name='pagfxDivisa' id='pagfxDivisa'>
 			</td>
+		</tr>
+		<tr>	
 			<td>Pago por auto FX-concepto del pago</td>
 			<td>
 				<input type='text' name='pagfxConcepto' id='pagfxConcepto'>
@@ -897,6 +973,8 @@
 			<td>
 				<input type='text' name='pagfxSucursal' id='pagfxSucursal' onkeypress="return todo(event)">
 			</td>
+		</tr>
+		<tr>	
 			<td>Documentacion Anexa</td>
 			<td>
 				<input type='text' name='docAnex' id='docAnex' onkeypress="return todo(event)">
@@ -907,6 +985,8 @@
 			<td>
 				<input type='text' name='motAlta' id='motAlta' onkeypress="return todo(event)">
 			</td>
+		</tr>
+		<tr>	
 			<td>
 				¿El alta sustituye a la cuenta atual?
 			</td>
@@ -918,6 +998,8 @@
 			</td>
 		</tr>
 	</table>
+</div>
+
 </div>
 
 </body>
