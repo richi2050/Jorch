@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,6 +11,9 @@
 
 	<script>
 	$(document).ready(function(){
+			
+	
+
 		$('#correo').blur(function(){
 			var _this = $('#correo');
 			var _email = $('#correo').val();
@@ -113,6 +115,16 @@
 		 	}else if(prove == 'default'){
 		 		ocultar_all();
 		 	}
+
+		 var valor2 = $('#Origenpais').val();
+			
+			if(valor2 == 'AR'){
+				$('#idFiscal1').removeClass('no-display');
+				$('#idFiscal2').addClass('no-display');
+			}else{
+				$('#idFiscal2').removeClass('no-display');
+				$('#idFiscal1').addClass('no-display');
+			}	
 		});
 
 		$('#Moneda').unbind().bind('change',function(){
@@ -136,6 +148,15 @@
 			 	}else if(prove == 'default'){
 			 		ocultar_all();
 			 	}
+			 	 var valor2 = $('#Origenpais').val();
+			
+			if(valor2 == 'AR'){
+				$('#idFiscal1').removeClass('no-display');
+				$('#idFiscal2').addClass('no-display');
+			}else{
+				$('#idFiscal2').removeClass('no-display');
+				$('#idFiscal1').addClass('no-display');
+			}
 		 	}
 		 	else{
 
@@ -153,11 +174,18 @@
 			}
 		});
 
+
 	});
+
 
 var patron = new Array(2,2,2,2,2,2,2,2,2)
 var patron2 = new Array(2,2,2,2,2,2,2,2,2)
 	
+	function contador (campo, cuentacampo, limite) { 
+if (campo.value.length > limite) campo.value = campo.value.substring(0, limite); 
+else cuentacampo.value = limite - campo.value.length; 
+} 
+
 	function mascara(d,sep,pat,nums){
 if(d.valant != d.value){
 	val = d.value
@@ -565,10 +593,15 @@ if(d.valant != d.value){
 				</label>
 			</td>
 			<td>
-				<select name='idFiscal' id='idFiscal'>
+				<select name='idFiscal1' id='idFiscal1' class="no-display">
 					<option value='0'>Selecciona id fiscal</option>
 					<option value='1'>CUIL</option>
 					<option value='2'>CUIT</option>
+				</select>
+				<select name='idFiscal2' id='idFiscal2' class="no-display">
+					<option value='0'>Selecciona id fiscal</option>
+					<option value='1'>Id-fiscal</option>
+					<option value='2'>Id fiscal</option>
 				</select>
 			</td>
 
@@ -615,7 +648,7 @@ if(d.valant != d.value){
 				<label>Referencia</label>
 			</td>
 			<td>
-				<input type='text' name='referencia' id='referencia' onkeyup="mascara(this,'-',patron2,true)">
+				<input type='text' name='referencia' id='referencia' onkeyup="mascara(this,'-',patron2,true)" onKeyDown= "contador(this.form.mensaje,this.form.remLen,26);">
 			</td>
 		</tr>
 	
@@ -658,7 +691,7 @@ if(d.valant != d.value){
 				<label>Referencia</label>
 			</td>
 			<td>
-				<input type='text' name='referencia' id='referencia' onkeypress="return todo(event)" onkeyup="mascara(this,'-',patron2,true)"/>
+				<input type='text' name='referencia' id='referencia' onkeypress="return todo(event)" onkeyup="mascara(this,'-',patron2,true)" onKeyDown= "contador(this.form.mensaje,this.form.remLen,26);"/>
 			</td>
 		</tr>
 	</table>
@@ -854,6 +887,34 @@ if(d.valant != d.value){
 			</td>
 		</tr>
 	</table>
+	<span class="label label-2 ">Otros datos</span>
+	<table align="center" width="70%">
+		<tr>
+			<td>Documentación anexa</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Estado de cuenta</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Carta de banco</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Instrucciones wire transfer</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Contrato bancario</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Factura</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Otro</td>
+		</tr>
+		<tr>
+			<td>Motivo que origina la alta</td>
+			<td>
+				<select>
+					<option>Cuenta nueva</option>
+					<option>Cuenta adicional</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>El alta sustituye ala cuenta actual</td>
+			<td>
+			<input type="radio" name="group1" value="si" checked> Si<br>
+			<input type="radio" name="group1" value="no" > No
+			</td>
+		</tr>
+	</table>
 	</div>
 
 <div id='datoscolum_4' class='no-display'>
@@ -995,6 +1056,34 @@ if(d.valant != d.value){
 					<option value="SI">SI</option>
 					<option value="NO">NO</option>
 				</select>
+			</td>
+		</tr>
+	</table>
+	<span class="label label-2 ">Otros datos</span>
+	<table align="center" width="70%">
+		<tr>
+			<td>Documentación anexa</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Estado de cuenta</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Carta de banco</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Instrucciones wire transfer</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Contrato bancario</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Factura</td>
+			<td><input type="checkbox" name="estadiocu" value="estadiocu">Otro</td>
+		</tr>
+		<tr>
+			<td>Motivo que origina la alta</td>
+			<td>
+				<select>
+					<option>Cuenta nueva</option>
+					<option>Cuenta adicional</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>El alta sustituye ala cuenta actual</td>
+			<td>
+			<input type="radio" name="group1" value="si" checked> Si<br>
+			<input type="radio" name="group1" value="no" > No
 			</td>
 		</tr>
 	</table>
