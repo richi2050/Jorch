@@ -1,5 +1,5 @@
 body{
-	background-color: '#E8F9FE';
+	background-color: #CCC;
 }
 .no-display{
 	display: none!important;
@@ -8,4 +8,13 @@ body{
 	color: #e32;
 	content: '*';
 	display:inline;
+}
+.label-2{
+	width: 70%;
+	height: 20px;
+	padding:0;
+	margin-right: 300px;
+	margin-left: 185px;
+	margin-bottom: 20px;
+	font-size: 20px;
 }
