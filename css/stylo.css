@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
 	background-color: #CCC;
 }
@@ -18,3 +19,25 @@ body{
 	margin-bottom: 20px;
 	font-size: 20px;
 }
+=======
+body{
+	background-color: '#E8F9FE';
+}
+.no-display{
+	display: none!important;
+}
+.required label:after {
+	color: #e32;
+	content: '*';
+	display:inline;
+}
+.label-2{
+	width: 70%;
+	height: 20px;
+	padding:0;
+	margin-right: 300px;
+	margin-left: 195px;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+>>>>>>> FETCH_HEAD
