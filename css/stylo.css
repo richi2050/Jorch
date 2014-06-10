@@ -21,7 +21,7 @@ body{
 }
 =======
 body{
-	background-color: '#E8F9FE';
+	background-color: #CCC;
 }
 .no-display{
 	display: none!important;
@@ -36,7 +36,7 @@ body{
 	height: 20px;
 	padding:0;
 	margin-right: 300px;
-	margin-left: 195px;
+	margin-left: 185px;
 	margin-bottom: 20px;
 	font-size: 20px;
 }
