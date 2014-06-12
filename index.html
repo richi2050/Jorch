@@ -28,69 +28,65 @@
 			}
 		});
 		$('#Origencuenta').unbind().bind('change',function(){
-			var valor = $(this).val();
-			if(valor == 'N'){
+			var pais = {pais: $('#Origencuenta').val()};
+				$.ajax({
+					type: 'POST',
+					data: pais,
+					url: 'comboPais.php',
+					beforeSend: function(XMLHttpRequest) {
+						//$('#transctaid').ajaxloader('show', 'tata-ajax-loader-img3');
+					},success: function(data)
+					{
+					$("#Origenpais").html(data);
+					},complete: function(XMLHttpRequest, textStatus) {
+						//$('#transctaid').ajaxloader('hide');
+					},error: function(){
+						alert('Ocurrió un error al cargar los conceptos de ingresos');
+					}
+				});
+		});
 
-				$('#Origenpais').append('<option value="M">México</option>');
-				$("#Origenpais").val('M').attr("selected", "selected");
-				$("#Origenpais").find("option[value='default']").remove();
-
-				$("#Moneda").append('<option value="PN">Pesos mexicanos</option><option value="DL">Dolares</option>');
-				$('#Moneda').val('PN').attr("selected","selected");
-				$("#Moneda").find("option[value='default']").remove();
-				$("#proveedor").find("option").remove();
-
-				$("#proveedor").append('<option value="default">Selecionar moral</option><option value="PM">Persona Moral</option><option value="PF">Persona Fisica</option>');
-
+		$('#Origenpais').unbind().bind('change',function(){
+			var pais = {pais: $(this).val()};
+			if(pais != ''){
+				$.ajax({
+					type: 'POST',
+					data: pais,
+					url: 'combomoneda.php',
+					beforeSend: function(XMLHttpRequest) {
+						//$('#transctaid').ajaxloader('show', 'tata-ajax-loader-img3');
+					},success: function(data)
+					{
+					$("#Moneda").html(data);
+					},complete: function(XMLHttpRequest, textStatus) {
+						//$('#transctaid').ajaxloader('hide');
+					},error: function(){
+						alert('Ocurrió un error al cargar los conceptos de ingresos');
+					}
+				});
 			}
-			else if(valor == 'E'){
-				$("#Origenpais").find("option[value='M']").remove();
-				$("#Moneda").find("option[value='PN']").remove();
-				$("#Moneda").find("option[value='DL']").remove();
-				$("#Origenpais").find("option[value='default']").remove();
-				$("#Moneda").append('<option value="default">Seleccionar la moneda </option>');
+		});
 
-				$('#Origenpais').append('<option value="default">Selecionar pais de origen</option><option value="AR">Argentina</option><option value="UE">USA</option>');
+		$('#Moneda').change(function(){
+			var moral = {moral: $(this).val()};
+				$.ajax({
+					type: 'POST',
+					data: moral,
+					url: 'combomoral.php',
+					beforeSend: function(XMLHttpRequest) {
+						//$('#transctaid').ajaxloader('show', 'tata-ajax-loader-img3');
+					},success: function(data)
+					{
+					$("#proveedor").html(data);
 
-					$("#Origenpais").unbind().bind('change',function(){
-						var pais = $(this).val();
+					},complete: function(XMLHttpRequest, textStatus) {
+						//$('#transctaid').ajaxloader('hide');
+					},error: function(){
+						alert('Ocurrió un error al cargar los conceptos de ingresos');
+					}
+				});
+			
 
-						if(pais == 'AR'){
-							$("#Moneda").find("option").remove(); 
-							$("#Moneda").append("<option value='PA'>Pesos argentinos</option><option value='DL'>Dolares</option>");
-						}else if(pais == 'UE'){
-							$("#Moneda").find("option").remove();
-
-							$("#Moneda").append("<option value='DL'>Dolares</option>");
-						}
-					});
-				$("#proveedor").find("option").remove(); 
-				$("#proveedor").append('<option value="default">Selecionar moral</option><option value="PM">Persona Moral</option><option value="PF">Persona Fisica</option>');
-
-			}else{
-				$("#Origenpais").find("option[value='default']").remove();
-
-				$('#Origenpais').append('<option value="default">Selecionar pais de origen</option>');
-
-				$("#Origenpais").val('default').attr("selected", "selected");
-
-				$("#Moneda").append('<option value="default">Seleccionar la moneda </option>');
-				$('#Moneda').val('default').attr("selected","selected");
-				
-				$("#proveedor").find("option[value='default']").remove();
-				$("#proveedor").append('<option value="default">Selecionar moral</option>');
-
-				$("#Moneda").find("option[value='PN']").remove();
-				$("#Moneda").find("option[value='DL']").remove();
-				$("#Origenpais").find("option[value='M']").remove();
-				
-				$("#proveedor").find("option[value='PM']").remove();
-				$("#proveedor").find("option[value='PF']").remove();
-				//$("#proveedor").find("option[value='default']").remove();
-
-
-
-			}
 		});
 
 		$('#proveedor').unbind().bind('change',function(){
@@ -127,7 +123,7 @@
 			}	
 		});
 
-		$('#Moneda').unbind().bind('change',function(){
+		/*$('#Moneda').unbind().bind('change',function(){
 		 var prove = $('#proveedor').val(),ç
 		 	nacionalidad= $('#Origencuenta').val(),
 		 	pais = $('#Origenpais').val(),
@@ -161,7 +157,7 @@
 		 	else{
 
 		 	}
-		});
+		});*/
 
 		$('#bancos').unbind().bind('change',function(){
 			var valor = $(this).val();
@@ -1212,6 +1208,6 @@ if(d.valant != d.value){
 
 
 </form>
-
+<div id='#iddivscript'></div>
 </body>
 </html
