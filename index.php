@@ -104,7 +104,6 @@ if(!empty($_GET['folio'])){
 		 	nacionalidad= $('#Origencuenta').val(),
 		 	pais = $('#Origenpais').val(),
 		 	moneda = $('#Moneda').val();
-		 	alert('NAcionalidad= '+ nacionalidad + 'pais= '+ pais +'moneda= '+moneda+'provedor= '+prove);
 
 		 	if(nacionalidad == 'N' && pais == 1 && moneda == 1 && prove =='PF'){
 		 		ocultar_1();
@@ -426,7 +425,6 @@ function numerico(e){
 				});
 	}
 	function  ocultar_6() {
-		alert('ocultar 6');
 		$.ajax({
 					type: 'POST',
 					//data: moral,
