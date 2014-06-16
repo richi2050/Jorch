@@ -9,7 +9,7 @@ if($pais == 'N'){
 	$option="<option value=''>Seleccionar pais de origen</option>";
 	while($objResult = oci_fetch_array($query))  
 	{  
-	 $option .= "<option value='".$objResult[0]."'>".$objResult[1]."</option>";
+	 $option .= "<option value='".$objResult[0]."'>".utf8_encode($objResult[1])."</option>";
 	}
 	echo $option;
 }else if($pais == 'E'){
