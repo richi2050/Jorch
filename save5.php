@@ -70,5 +70,29 @@ values('',
 $query5=oci_parse($conn, $sql5);
 	oci_execute($query5);
 
+$contenido=$_POST['prove']['id_prove'];
+$ruta = "archivos/".$_POST['prove']['id_prove']."_actual.txt";
+//echo $ruta;
+//$ruta = "\\CORPSFEEUPWFWB\transPortal_oracle$\EP02_FormatoMoneda\".$_POST['prove']['id_prove']."_actual.txt";
+if($_POST['datos_3']['radio'] =='SI'){
+//$ruta = "\\CORPSFEEUPWFWB\transPortal_oracle$\EP02_FormatoMoneda\".$_POST['prove']['id_prove']."_actual.txt";
+$ruta = "archivos/".$_POST['prove']['id_prove']."_modificado.txt";
+
+	if(!file_exists($ruta)){
+		$fp=fopen($ruta,"x");
+fwrite($fp,$contenido);
+fclose($fp) ;
+	}
+}else{
+	$ruta = "archivos/".$_POST['prove']['id_prove']."_nuevo.txt";
+//$ruta = "\\CORPSFEEUPWFWB\transPortal_oracle$\EP02_FormatoMoneda\".$_POST['prove']['id_prove']."_nuevo.txt";
+	if(!file_exists($ruta)){
+		$fp=fopen($ruta,"x");
+		fwrite($fp,$contenido);
+		fclose($fp); 
+	}
+}
+
+
 	echo"<script>alert('Datos guardados');</script>";
 ?>

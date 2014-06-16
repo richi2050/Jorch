@@ -247,10 +247,10 @@
 		<tr>
 			<td>El alta sustituye a la cuenta actual</td>
 			<td>
-			<input type="radio" id='radio' name="group1" value="si" checked> Si<br>
+			<input type="radio" id='radio1' name="group1" value="si" checked> Si<br>
 			</td>
 			<td>
-				<input type="radio" id='radio' name="group1" value="no" > No
+				<input type="radio" id='radio2' name="group1" value="no" > No
 			</td>
 		</tr>
 		<tr>
@@ -265,6 +265,13 @@
 	<script>
 $(document).ready(function(){
 $('#envio1').unbind().bind('click',function(){
+		if($('#radio1').is(':checked')){
+ var radio='SI';
+	}else{
+ var radio='NO';
+
+	}
+
 $.ajax({
 					type: 'POST',
 					data: {
@@ -309,7 +316,7 @@ $.ajax({
 							anexa_banc_factu:$('#factu').val(),
 							anexa_banc_otro:$('#otro').val(),
 							motivo_cta:$('#motivo_cta').val(),
-							radio:$('#radio').val(),
+							radio:radio,
 						}
 
 					},

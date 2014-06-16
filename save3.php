@@ -41,6 +41,12 @@ WHERE FOLIO_SOLICITUD='".$_POST['prove']['id_prove']."'
 $query3=oci_parse($conn, $sql4);
 	oci_execute($query3);
 
+$contenido=$_POST['prove']['id_prove'];
+$ruta = "archivos/".$_POST['prove']['id_prove']."_actual.txt";
+
+$fp=fopen($ruta,"x");
+fwrite($fp,$contenido);
+fclose($fp) ;
 
 
 
