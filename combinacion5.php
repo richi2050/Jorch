@@ -216,7 +216,7 @@
 		<tr>
 			<td>Pago por auto FX-Divisa del pago</td>
 			<td>
-				<input type='text' name='pagfxDivisa' id='pagfxDivisa' onKeyPress="return numerico(event)">
+				<input type='text' name='pagfxDivisa' id='pagfxDivisa' onKeyPress="return todo(event)">
 			</td>
 		</tr>
 		<tr>	
