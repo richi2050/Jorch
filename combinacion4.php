@@ -1,38 +1,6 @@
-
-	<div >
+<form>
 		<span class="label label-2 ">Datos Bancarios del Proveedor</span>
-	<table align='center' width="70%">	
-				<tr>
-					<td>
-						<label>
-							Nombre de persona física/moral
-						</label>
-					</td>
-					<td colspan='3'>
-						<input name='nombrefisica' type='text' id='nombrefisica' size="60" maxlength="60" onKeyPress="return soloLetras(event)">
-					</td>
-		         
-		      </tr>
-		         <tr>   
-					<td class='required'>
-						<label>id fiscal</label>
-					</td>	
-					<td colspan='3'>
-						<input type='text' name='idFiscal' name='idFiscal' onkeypress="return fiscal(event)">
-					</td>
-				</tr>
-				<tr>
-					<td><label>correo</label></td>
-					<td>
-						<input type='text' name='correo' id='correo'>
-					</td>
-
-					<td>
-						<label>teléfono</label></td>
-					<td>
-						<input type='text' name='telefono' id='telefono'>
-					</td>
-				</tr>
+	<table align='center' width="70%">
 				<tr>
 					<td class='required'>
 						<label>Banco</label>
@@ -98,12 +66,7 @@
 						</label>
 					</td>
 					<td>
-						<select name='idFiscal1' id='idFiscal1' class="no-display">
-							<option value='0'>Selecciona id fiscal</option>
-							<option value='1'>CUIL</option>
-							<option value='2'>CUIT</option>
-						</select>
-						<select name='idFiscal2' id='idFiscal2' class="no-display">
+						<select name='idFiscal2' id='tpo_fiscal'>
 							<option value='0'>Selecciona id fiscal</option>
 							<option value='1'>RFC</option>
 							<option value='2'>Formato R1</option>
@@ -165,7 +128,7 @@
 			</td>
 			<td>
 				<textarea name="cuentacorta3" cols="20" rows="1" maxlength="20" autofocus 
-        wrap=physical onKeyDown= "contador(this.form.cuentacorta3,this.form.remLen3,20);" 
+        wrap=physical id='referencia' onKeyDown= "contador(this.form.cuentacorta3,this.form.remLen3,20);" 
         ></textarea>
 			</td>
 		</tr>
@@ -181,12 +144,60 @@
 		<tr>
 			<td colspan='4'>
 				<center>
-				<a href="http://10.7.39.176/onbase/TELEVISA/IniciaSolicitud/FormularioSolicitud.html">
-          <input type="button" value="Envio" OnClick="alert('Esta información sera enviada a Televisa y utilizada para el proceso de Alta de Proveedores');return true;"/>
-      		</a>
-          </center>
+          			<input type="button" value="Envio" id='envio1' OnClick="alert('Esta información sera enviada a Televisa y utilizada para el proceso de Alta de Proveedores');return true;"/>
+          		</center>
 			</td>
 		</tr>
 
 	</table>
-	</div>
+</form>
+<div id='data1'>
+</div>
+<script>
+$(document).ready(function(){
+$('#envio1').unbind().bind('click',function(){
+$.ajax({
+					type: 'POST',
+					data: {
+						prove:{
+							id_prove: $('#id_pro').val(),
+							origen: $('#Origencuenta').val(),
+							origen_pais: $('#Origenpais').val(),
+							moneda: $('#Moneda').val(),
+							moral: $('#proveedor').val()
+						},
+						datos_b:{
+							banco:$('#bancos').val(),
+							sucursal:$('#sucursal').val(),
+							cta_cor:$('#cuentaCorta').val(),
+							cta_lar:$('#cuentaLarga').val(),
+							tpo_id_fiscal:$('#tpo_fiscal').val(),
+							tpo_cta:$('#tipoCuenta').val(),
+							nombre_2:$('#nombreFiscal').val(),
+						},
+						datos_3:{
+							aba_bene:$('#ABABene').val(),
+							swi_bene:$('#swiBene').val(),
+							convenio:$('#convenio').val(),
+							referencia:$('#referencia').val(),
+
+						}
+
+					},
+					url: 'save4.php',
+					beforeSend: function(XMLHttpRequest) {
+						//$('#transctaid').ajaxloader('show', 'tata-ajax-loader-img3');
+					},success: function(data)
+					{
+					$("#data1").html(data);
+
+					},complete: function(XMLHttpRequest, textStatus) {
+						//$('#transctaid').ajaxloader('hide');
+					},error: function(){
+						alert('Ocurrió un error al cargar los conceptos de ingresos');
+					}
+				});
+});
+});
+
+</script>

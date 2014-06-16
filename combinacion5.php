@@ -1,37 +1,6 @@
 	<span class="label label-2 ">Datos Bancarios del Proveedor</span>
 	<table align='center' width="70%">	
 				<tr>
-					<td>
-						<label>
-							Nombre de persona física/moral
-						</label>
-					</td>
-					<td colspan='3'>
-						<input name='nombrefisica' type='text' id='nombrefisica' size="60" maxlength="60" onKeyPress="return soloLetras(event)">
-					</td>
-		         
-		      </tr>
-		         <tr>   
-					<td class='required'>
-						<label>id fiscal</label>
-					</td>	
-					<td colspan='3'>
-						<input type='text' name='idFiscal' name='idFiscal' onkeypress="return fiscal(event)">
-					</td>
-				</tr>
-				<tr>
-					<td><label>correo</label></td>
-					<td>
-						<input type='text' name='correo' id='correo'>
-					</td>
-
-					<td>
-						<label>teléfono</label></td>
-					<td>
-						<input type='text' name='telefono' id='telefono'>
-					</td>
-				</tr>
-				<tr>
 					<td class='required'>
 						<label>Banco</label>
 					</td>
@@ -96,16 +65,12 @@
 						</label>
 					</td>
 					<td>
-						<select name='idFiscal1' id='idFiscal1' class="no-display">
+						<select name='idFiscal1' id='tpo_fiscal'>
 							<option value='0'>Selecciona id fiscal</option>
 							<option value='1'>CUIL</option>
 							<option value='2'>CUIT</option>
 						</select>
-						<select name='idFiscal2' id='idFiscal2' class="no-display">
-							<option value='0'>Selecciona id fiscal</option>
-							<option value='1'>RFC</option>
-							<option value='2'>Formato R1</option>
-						</select>
+					
 					</td>
 
 					<td class='required'>
@@ -195,13 +160,13 @@
 				ABA Banco Corresponsal
 			</td>
 			<td>
-				<input type='text' name='ABABene' id='ABABene'  onkeypress="return numerico(event)">
+				<input type='text' name='ABACore' id='ABACore'  onkeypress="return numerico(event)">
 			</td>
 		</tr>
 		<tr>
 			<td>SWIFT Banco Corresponsal</td>
 			<td>
-				<input type='text' name='swiBene' id='swiBene' onKeyPress="return numerico(event)">
+				<input type='text' name='swiCore' id='swiCore' onKeyPress="return numerico(event)">
 			</td>
 		</tr>
 		<tr>
@@ -230,9 +195,9 @@
 			</td>
 			<td>
 				<select type='text' name='TpoCtABAnCore' id='TpoCtABAnCore'>
-				<option value='tpoA'>Ahorro</option>
-				<option value='tpoI'>Inversion</option>
-				<option value='tpoI'>Corriente</option>
+				<option value='Ahorro'>Ahorro</option>
+				<option value='Inversion'>Inversion</option>
+				<option value='Corriente'>Corriente</option>
 				</select>
 			</td>
 		</tr>
@@ -273,38 +238,106 @@
 	<table align="center" width="70%">
 		<tr>
 			<td>Documentación anexa</td>
-			<td><input type="checkbox" name="estadiocu" value="estadiocu">Estado de cuenta</td>
-			<td><input type="checkbox" name="estadiocu" value="estadiocu">Carta de banco</td>
-			<td><input type="checkbox" name="estadiocu" value="estadiocu">Instrucciones wire transfer</td>
-			<td><input type="checkbox" name="estadiocu" value="estadiocu">Contrato bancario</td>
-			<td><input type="checkbox" name="estadiocu" value="estadiocu">Factura</td>
-			<td><input type="checkbox" name="estadiocu" value="estadiocu">Otro</td>
+			<td><input type="checkbox" id='sta_cta' name="estadiocu" value="S">Estado de cuenta</td>
+			<td><input type="checkbox" id='cart_banc' name="estadiocu" value="S">Carta de banco</td>
+			<td><input type="checkbox" id='wire_trans' name="estadiocu" value="S">Instrucciones wire transfer</td>
+			<td><input type="checkbox" id='banc_contr' name="estadiocu" value="S">Contrato bancario</td>
+			<td><input type="checkbox" id='factu' name="estadiocu" value="S">Factura</td>
+			<td><input type="checkbox" id='otro' name="estadiocu" value="S">Otro</td>
 		</tr>
 		<tr>
 			<td>Motivo que origina la alta</td>
 			<td colspan='2'>
-				<select>
-					<option>Cuenta nueva</option>
-					<option>Cuenta adicional</option>
+				<select id='motivo_cta'>
+					<option value='Cuenta nueva'>Cuenta nueva</option>
+					<option value='Cuenta adicional'> Cuenta adicional</option>
 				</select>
 			</td>
 		</tr>
 		<tr>
 			<td>El alta sustituye a la cuenta actual</td>
 			<td>
-			<input type="radio" name="group1" value="si" checked> Si<br>
+			<input type="radio" id='radio' name="group1" value="si" checked> Si<br>
 			</td>
 			<td>
-				<input type="radio" name="group1" value="no" > No
+				<input type="radio" id='radio' name="group1" value="no" > No
 			</td>
 		</tr>
 		<tr>
 			<td colspan='7'>
 				<center>
-				<a href="http://10.7.39.176/onbase/TELEVISA/IniciaSolicitud/FormularioSolicitud.html">
-          <input type="button" value="Envio" OnClick="alert('Esta información sera enviada a Televisa y utilizada para el proceso de Alta de Proveedores');return true;"/>
-      		</a>
-          </center>
+ 		           <input type="button" value="Envio" id='envio1' OnClick="alert('Esta información sera enviada a Televisa y utilizada para el proceso de Alta de Proveedores');return true;"/>
+        		</center>
 			</td>
 		</tr>
 	</table>
+<divn id='data1'></div>
+	<script>
+$(document).ready(function(){
+$('#envio1').unbind().bind('click',function(){
+$.ajax({
+					type: 'POST',
+					data: {
+						prove:{
+							id_prove: $('#id_pro').val(),
+							origen: $('#Origencuenta').val(),
+							origen_pais: $('#Origenpais').val(),
+							moneda: $('#Moneda').val(),
+							moral: $('#proveedor').val()
+						},
+						datos_b:{
+							banco:$('#bancos').val(),
+							sucursal:$('#sucursal').val(),
+							cta_cor:$('#cuentaCorta').val(),
+							cta_lar:$('#cuentaLarga').val(),
+							tpo_id_fiscal:$('#tpo_fiscal').val(),
+							tpo_cta:$('#tipoCuenta').val(),
+							nombre_2:$('#nombreFiscal').val(),
+						},
+						datos_3:{
+							nom_apo:$('#nombreApo').val(),
+							aba_bene:$('#ABABene').val(),
+							swi_bene:$('#swiBene').val(),
+							dom_pro:$('#docPro').val(),
+							dom_ban_bene:$('#docBene').val(),
+							nom_ban_core:$('#banCore').val(),
+							dom_ban_core:$('#dombanCore').val(),
+							aba_core:$('#ABACore').val(),
+							swin_core:$('#swiCore').val(),
+							cta_corta_corre:$('#cuentABAncoCor').val(),
+							cta_larga_corre:$('#cuentABAncoLar').val(),
+							divisa:$('#divBanCore').val(),
+							tpo_cta:$('#TpoCtABAnCore').val(),
+							nom_titu_FFC:$('#nomTiBanCoreFFC').val(),
+							nom_cta_FFC:$('#numCtABAnCoreFFC').val(),
+							pago_fx_divisa:$('#pagfxDivisa').val(),
+							pago_fx_concepto:$('#pagfxConcepto').val(),
+							pago_fx_sucursal:$('#pagfxSucursal').val(),
+							anexa_sta_cta:$('#sta_cta').val(),
+							anexa_cart_banc:$('#cart_banc').val(),
+							anexa_wire_trans:$('#wire_trans').val(),
+							anexa_banc_contr:$('#banc_contr').val(),
+							anexa_banc_factu:$('#factu').val(),
+							anexa_banc_otro:$('#otro').val(),
+							motivo_cta:$('#motivo_cta').val(),
+							radio:$('#radio').val(),
+						}
+
+					},
+					url: 'save5.php',
+					beforeSend: function(XMLHttpRequest) {
+						//$('#transctaid').ajaxloader('show', 'tata-ajax-loader-img3');
+					},success: function(data)
+					{
+					$("#data1").html(data);
+
+					},complete: function(XMLHttpRequest, textStatus) {
+						//$('#transctaid').ajaxloader('hide');
+					},error: function(){
+						alert('Ocurrió un error al cargar los conceptos de ingresos');
+					}
+				});
+});
+});
+
+</script>

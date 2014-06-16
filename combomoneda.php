@@ -8,7 +8,7 @@ if($pais != ''){
 	$option="<option value=''>Seleccionar la moneda</option>";
 	while($objResult = oci_fetch_array($query))  
 	{  
-	 $option .= "<option value='".$objResult[0]."'>".utf8_decode($objResult[2])."</option>";
+	 $option .= "<option value='".$objResult[0]."'>".$objResult[2]."</option>";
 	}
 	echo $option;
 

@@ -1,0 +1,27 @@
+CREATE TABLE PROVEDOR_ANEXA
+(
+  ID                  INTEGER                   NOT NULL,
+  ID_PRO			  VARCHAR(100,BYTE),
+  STA_CTA             CHAR(2),  
+  CARTA_BANCO         CHAR(2),
+  INTRUC_WIRE         CHAR(2),
+  CONTRATO_BAN        CHAR(2),
+  FACTURA             CHAR(2),
+  OTRO                CHAR(2)
+);
+
+ALTER TABLE PROVEDOR_ANEXA ADD (
+  CONSTRAINT pro_pk_5 PRIMARY KEY (ID));
+
+CREATE SEQUENCE dept_seq_p_5;
+
+CREATE OR REPLACE TRIGGER dept_bir_p_5
+BEFORE INSERT ON PROVEDOR_ANEXA
+FOR EACH ROW
+
+BEGIN
+  SELECT dept_seq_p_5.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+

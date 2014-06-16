@@ -146,37 +146,6 @@ function numerico(e){
 		<span class="label label-2 ">Datos Bancarios del Proveedor</span>
 	<table align='center' width="70%">	
 				<tr>
-					<td>
-						<label>
-							Nombre de persona física/moral
-						</label>
-					</td>
-					<td colspan='3'>
-						<input name='nombrefisica' type='text' id='nombrefisica' size="60" maxlength="60" onKeyPress="return soloLetras(event)">
-					</td>
-		         
-		      </tr>
-		         <tr>   
-					<td class='required'>
-						<label>id fiscal</label>
-					</td>	
-					<td colspan='3'>
-						<input type='text' name='idFiscal' id='idFiscal'  onkeypress="return fiscal(event)">
-					</td>
-				</tr>
-				<tr>
-					<td><label>correo</label></td>
-					<td>
-						<input type='text' name='correo' id='correo'>
-					</td>
-
-					<td>
-						<label>teléfono</label></td>
-					<td>
-						<input type='text' name='telefono' id='telefono'>
-					</td>
-				</tr>
-				<tr>
 					<td class='required'>
 						<label>Banco</label>
 					</td>
@@ -257,9 +226,9 @@ function numerico(e){
 					<td>
 						<select name="tipoCuenta" id="tipoCuenta">
 							<option value='0'>Selecciona tipo de cuenta</option>
-							<option value='1'>Ahorro</option>
-							<option value='2'>Inversión</option>
-							<option value='3'>Corriente</option>
+							<option value='Ahorro'>Ahorro</option>
+							<option value='Inversión'>Inversión</option>
+							<option value='Corriente'>Corriente</option>
 						</select>
 					</td>
 				</tr>
